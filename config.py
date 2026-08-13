@@ -1,8 +1,7 @@
 import os
-import streamlit as st
 from dotenv import load_dotenv
 
-# Load local .env file (for local development)
+# Load environment variables from .env
 load_dotenv()
 
 
@@ -14,23 +13,14 @@ class ConfigError(Exception):
 def _get_required_env(var_name: str) -> str:
     """
     Fetch a required environment variable.
-
-    Priority:
-    1. Streamlit Secrets (Cloud)
-    2. Local .env file
+    Raise a clear error if it does not exist.
     """
-
-    # Streamlit Cloud Secrets
-    if var_name in st.secrets:
-        return st.secrets[var_name]
-
-    # Local .env
     value = os.getenv(var_name)
 
     if not value:
         raise ConfigError(
             f"Missing required environment variable: '{var_name}'. "
-            f"Please add it to Streamlit Secrets or your .env file."
+            f"Please add it to your .env file."
         )
 
     return value
