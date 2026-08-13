@@ -50,18 +50,31 @@ Below is raw web search data about the company:
 Using ONLY the information above, write two sections in markdown:
 
 ## Company Overview
-Write 2-3 short paragraphs covering what the company does, its
-industry, approximate size, and founding background if available.
+Write a concise summary (2-3 short paragraphs) that clearly covers:
+- What the company does (its core business, in plain terms)
+- Industry (the specific industry/sector it competes in)
+- Scale (employee count, revenue, funding stage, number of
+  customers/locations, or any other size indicator found in the data)
+- Geographic presence (headquarters and the countries/regions it
+  operates in or serves)
 
 ## Key Business Information
-Write a short bulleted list covering: headquarters location, industry,
-main products or services, key markets, and leadership (if known).
+Write a bulleted list that identifies:
+- Major offerings (its main products, services, or business lines)
+- Recent developments (recent news, launches, funding rounds,
+  partnerships, leadership changes, etc.)
+- Expansion plans (any stated plans to enter new markets, launch new
+  products, grow headcount, or scale operations)
+- Important public information (anything else notable and verifiable —
+  e.g. awards, certifications, major clients, regulatory matters,
+  public statements from leadership)
 
 Important rules:
 - Only state facts that are supported by the search data above.
-- If a specific detail (e.g. founding year, headquarters) is not
-  present in the search data, write "Not publicly available" for that
-  detail instead of guessing or inventing it.
+- If a specific detail above (e.g. scale, geographic presence,
+  expansion plans) is not present in the search data, write "Not
+  publicly available" for that detail instead of guessing or
+  inventing it.
 - Do not add any section other than the two requested above.
 - Write in clear, professional business English."""
 
@@ -95,19 +108,37 @@ Additional raw research (recent news, industry context, etc.):
 {research_text}
 ---
 
-Identify 3 to 5 plausible, specific business challenges this company
-likely faces, grounded in its actual industry, size, and any recent
-news mentioned above. Avoid vague, generic challenges that could apply
-to any company (e.g. "there is competition").
+Based on the research and your own reasoning, identify 4 to 6 plausible,
+specific business challenges this company likely faces. Draw from
+across these angles, and only include ones that are actually plausible
+for this company (skip any angle that genuinely doesn't apply rather
+than forcing it):
+- Possible challenges (broader strategic or market challenges)
+- Operational bottlenecks (supply chain, capacity, process, staffing,
+  or infrastructure constraints)
+- Sales challenges (lead generation, conversion, pricing pressure,
+  sales cycle length, channel issues)
+- Customer experience challenges (support quality, onboarding,
+  retention, satisfaction, personalization)
+
+Avoid vague, generic challenges that could apply to any company (e.g.
+"there is competition"). Ground every challenge in this company's
+actual industry, size, geography, and any recent news mentioned above.
 
 Format your answer in markdown as a list. For each challenge:
-- Start with a short bolded title (3-6 words).
-- Follow it with one clear sentence explaining the challenge.
+- Start with a short bolded title (3-6 words), and note in parentheses
+  which category it falls under (Strategic / Operational / Sales /
+  Customer Experience).
+- Follow it with 1-2 sentences explaining the challenge AND your
+  reasoning for why this company specifically is likely to face it
+  (tie it back to a fact from the overview or research above).
 
 Example format:
-- **Rising customer acquisition costs** — As the market matures,
-  attracting new customers is becoming more expensive relative to
-  customer lifetime value.
+- **Rising customer acquisition costs** (Sales) — As the market
+  matures, attracting new customers is becoming more expensive
+  relative to customer lifetime value; this is likely to affect
+  {company_name} given its stated reliance on digital marketing
+  channels.
 
 Write only the list, with no introduction or closing remarks."""
 
@@ -140,17 +171,34 @@ Identified business challenges:
 {challenges}
 
 For each challenge listed above, propose one concrete, specific AI or
-automation opportunity that could help address it. Name an actual
-technique or application (for example, "a demand-forecasting model
-trained on historical sales data" or "an AI-powered customer support
-triage system") rather than vague buzzwords like "leverage AI
-synergies" or "implement AI solutions."
+automation opportunity that could help address it. Where relevant,
+draw on these categories (do not force all of them — only use what
+genuinely fits each challenge):
+- Automation (workflow, RPA, back-office process automation)
+- Customer engagement (chatbots, personalization, recommendation
+  engines)
+- Sales (lead scoring, forecasting, sales enablement tools)
+- Operations (demand forecasting, scheduling, supply chain
+  optimization)
+- Analytics (predictive analytics, dashboards, anomaly detection)
+- Document processing (OCR, extraction, summarization, automated
+  compliance checks)
+
+Name an actual technique or application specific to THIS company's
+context (for example, "a demand-forecasting model trained on
+[company]'s historical sales data" or "an AI-powered support triage
+system for [company]'s customer service queue") rather than vague
+buzzwords like "leverage AI synergies" or "implement AI solutions."
+Every suggestion must be clearly tailored to this company — do not
+write anything generic enough to paste into a brief for a different
+company unchanged.
 
 Format your answer in markdown as a list, with one entry per
 challenge, in the same order as the challenges above:
 - Start with a short bolded title for the opportunity (3-6 words).
-- Follow it with one or two sentences explaining the opportunity and
-  how it addresses the related challenge.
+- Follow it with one or two sentences explaining the opportunity, how
+  it works, and how it directly addresses the related challenge for
+  {company_name}.
 
 Write only the list, with no introduction or closing remarks."""
 
@@ -181,27 +229,46 @@ def build_pitch_prompt(
     str
         The complete prompt to send to Gemini.
     """
-    return f"""You are writing a short, personalized outreach message to
-the CEO of {company_name}, on behalf of an AI solutions provider.
+    return f"""You are preparing to meet the CEO of {company_name} in person, and
+are writing a one-page personalized pitch to bring to that meeting, on
+behalf of an AI solutions provider.
 
 Company overview:
 {overview}
 
-Business challenges:
+Business challenges identified:
 {challenges}
 
-AI opportunities:
+AI opportunities identified:
 {ai_opportunities}
 
-Write a pitch of 150-200 words, in first person, addressed directly to
-the CEO. The pitch must:
-- Open by referencing something specific and real about the company
-  (not a generic greeting like "I hope this finds you well").
-- Name ONE specific challenge from the list above and ONE specific AI
-  opportunity that addresses it.
-- Explain the value in plain business terms, not technical jargon.
-- Close with a soft, low-pressure call to action (e.g. suggesting a
-  short call), not a hard sell.
+Write a one-page pitch (roughly 350-450 words), in first person,
+addressed directly to the CEO by title (e.g. "Dear [CEO's name]," if a
+name is available in the overview above, otherwise "Dear [Company]
+Leadership Team,"). Structure it in markdown with these sections,
+using the exact section headings below:
+
+## Why I'm Reaching Out
+Open by referencing something specific and real about the company from
+the overview above (not a generic greeting like "I hope this finds you
+well"). Briefly explain why this company, specifically, prompted the
+outreach.
+
+## Opportunities We Identified
+Summarize 2-3 of the most compelling business challenges from the list
+above, in plain business language, showing you understand their
+situation.
+
+## Recommended AI Solutions
+For each challenge summarized above, describe the specific AI solution
+recommended and the concrete business value it delivers (time saved,
+cost reduced, revenue enabled, experience improved) — in plain
+business terms, not technical jargon.
+
+## Next Step
+Close with a soft, low-pressure call to action (e.g. suggesting a
+short call or a 15-minute walkthrough), not a hard sell.
 
 Do not use generic flattery or filler phrases. Write only the pitch
-text itself, with no heading, label, or explanation before or after it."""
+itself with the four headings above — no extra preamble or
+explanation before or after it."""
