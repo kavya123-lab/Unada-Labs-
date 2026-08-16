@@ -1,5 +1,10 @@
 # AI-Powered Research & Recommendation Agent
 
+## Demo
+
+**🎥 Video walkthrough:** [Watch the demo](https://drive.google.com/file/d/1NfDRYg-WcRcnKM81u9DoPcU6uQgatGap/view?usp=sharing)
+
+
 ## Overview
 
 AI-Powered Research & Recommendation Agent is a multi-agent AI application that automates company research and business analysis.
