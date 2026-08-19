@@ -2,7 +2,7 @@
 
 ## Demo
 
-**🎥 Video walkthrough:** [Watch the demo](https://drive.google.com/file/d/1NfDRYg-WcRcnKM81u9DoPcU6uQgatGap/view?usp=sharing)
+**🎥 Video walkthrough:** [Watch the demo](https://drive.google.com/file/d/1cL8nXTfn6mMRC95HiaXUiBEJvo8Y-6TK/view?usp=sharing)
 
 
 ## Overview
